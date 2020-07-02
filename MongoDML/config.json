@@ -1,0 +1,7 @@
+{
+  "host": "192.168.15.31",
+  "port": "27019",
+  "database": "Empresa_1_202007",
+  "collection": "dia_02",
+  "dbConnectionString": "Data Source=192.168.15.31;Initial Catalog=v202007.2_LOGA_SGO_V3;Persist Security Info=True;User ID=sa;Password=123456;MultipleActiveResultSets=True"
+}
