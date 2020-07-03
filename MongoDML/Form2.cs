@@ -138,6 +138,7 @@ namespace MongoDML
                 asmontecEntry = new AsmontecEntry()
                 {
                     _id = gpsEntry._id,
+                    tid = veic.IdentificacaoGPS,
                     tm = dtHr,
                     stm = dtHr,
                     gps = new[] { lat, lng }
