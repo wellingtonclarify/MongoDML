@@ -55,7 +55,7 @@ namespace MongoDML
                 var colSGO = ucVField4.FieldContent;
                 var dbAsmontec = dbSGO.Replace("Empresa_1", "gpsreal");
                 var colAsmontec = colSGO.Replace("dia", "gps");
-                MongoHelper.InsertSGO(host, port, dbSGO, colSGO, JsonConvert.SerializeObject(gpsEntry));
+                //MongoHelper.InsertSGO(host, port, dbSGO, colSGO, JsonConvert.SerializeObject(gpsEntry));
                 MongoHelper.InsertAsmontec(host, port, dbAsmontec, colAsmontec, JsonConvert.SerializeObject(asmontecEntry));
                 MessageBox.Show("Operação concluída com sucesso", "Adicionar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

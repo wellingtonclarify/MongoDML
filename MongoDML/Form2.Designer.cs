@@ -157,6 +157,7 @@
             this.xRadioButton1.TabStop = true;
             this.xRadioButton1.Text = "ENTRADA";
             this.xRadioButton1.UseVisualStyleBackColor = true;
+            this.xRadioButton1.Visible = false;
             this.xRadioButton1.CheckedChanged += new System.EventHandler(this.xRadioButton1_CheckedChanged);
             // 
             // xRadioButton2
@@ -168,6 +169,7 @@
             this.xRadioButton2.TabIndex = 12;
             this.xRadioButton2.Text = "SAÍDA";
             this.xRadioButton2.UseVisualStyleBackColor = true;
+            this.xRadioButton2.Visible = false;
             this.xRadioButton2.CheckedChanged += new System.EventHandler(this.xRadioButton2_CheckedChanged);
             // 
             // xDateTimePicker1
