@@ -17,7 +17,7 @@ namespace MongoDML.Core.Helpers
             return client;
         }
 
-        public static void InsertOne(string host, int port, string database, string collection, string record)
+        public static void InsertSGO(string host, int port, string database, string collection, string record)
         {
             try
             {
@@ -25,6 +25,21 @@ namespace MongoDML.Core.Helpers
                 var mongoDatabase = mongoConnection.GetDatabase(database);
                 var mongoCollection = mongoDatabase.GetMongoCollection<GPSEntry>(collection);
                 mongoCollection.InsertOne(BsonSerializer.Deserialize<GPSEntry>(record));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static void InsertAsmontec(string host, int port, string database, string collection, string record)
+        {
+            try
+            {
+                var mongoConnection = CreateConnection(host, port);
+                var mongoDatabase = mongoConnection.GetDatabase(database);
+                var mongoCollection = mongoDatabase.GetMongoCollection<AsmontecEntry>(collection);
+                mongoCollection.InsertOne(BsonSerializer.Deserialize<AsmontecEntry>(record));
             }
             catch (Exception)
             {

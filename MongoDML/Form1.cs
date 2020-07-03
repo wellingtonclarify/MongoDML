@@ -35,7 +35,7 @@ namespace MongoDML
                 var database = ucVField3.FieldContent;
                 var collection = ucVField4.FieldContent;
                 var record = xTextBox1.Text;
-                MongoHelper.InsertOne(host, port, database, collection, record);
+                MongoHelper.InsertSGO(host, port, database, collection, record);
                 MessageBox.Show("Operação concluída com sucesso", "Adicionar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

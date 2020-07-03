@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsmontecEntry.cs" />
     <Compile Include="BaseDbEntity.cs" />
     <Compile Include="Veiculo.cs" />
     <Compile Include="Cerca.cs" />

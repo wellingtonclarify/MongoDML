@@ -93,6 +93,7 @@
             this.xTextBox1.Location = new System.Drawing.Point(26, 104);
             this.xTextBox1.Multiline = true;
             this.xTextBox1.Name = "xTextBox1";
+            this.xTextBox1.ReadOnly = true;
             this.xTextBox1.Size = new System.Drawing.Size(766, 108);
             this.xTextBox1.TabIndex = 4;
             // 

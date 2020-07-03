@@ -10,6 +10,9 @@ namespace MongoDML
 {
     public partial class Form2 : XForm
     {
+        GPSEntry gpsEntry = null;
+        AsmontecEntry asmontecEntry = null;
+
         public Form2()
         {
             InitializeComponent();
@@ -20,8 +23,9 @@ namespace MongoDML
             var configHelper = ConfigHelper.GetInstance();
             ucVField1.FieldContent = configHelper.Get("host");
             ucVField2.FieldContent = configHelper.Get("port");
-            ucVField3.FieldContent = configHelper.Get("database");
-            ucVField4.FieldContent = configHelper.Get("collection");
+            ucVField3.FieldContent = string.Format("Empresa_1_{0}", DateTime.Today.ToString("yyyyMM")); //configHelper.Get("database");
+            ucVField4.FieldContent = string.Format("dia_{0}", DateTime.Today.ToString("dd")); //configHelper.Get("collection");
+            xCheckBox1.Checked = bool.Parse(configHelper.Get("askConfirmation"));
 
             var veiculos = Veiculo.GetAll();
             xComboBox1.ValueMember = "Id";
@@ -47,10 +51,12 @@ namespace MongoDML
 
                 var host = ucVField1.FieldContent;
                 var port = int.Parse(ucVField2.FieldContent);
-                var database = ucVField3.FieldContent;
-                var collection = ucVField4.FieldContent;
-                var record = xTextBox1.Text;
-                MongoHelper.InsertOne(host, port, database, collection, record);
+                var dbSGO = ucVField3.FieldContent;
+                var colSGO = ucVField4.FieldContent;
+                var dbAsmontec = dbSGO.Replace("Empresa_1", "gpsreal");
+                var colAsmontec = colSGO.Replace("dia", "gps");
+                MongoHelper.InsertSGO(host, port, dbSGO, colSGO, JsonConvert.SerializeObject(gpsEntry));
+                MongoHelper.InsertAsmontec(host, port, dbAsmontec, colAsmontec, JsonConvert.SerializeObject(asmontecEntry));
                 MessageBox.Show("Operação concluída com sucesso", "Adicionar", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -109,13 +115,14 @@ namespace MongoDML
             if (veic != null && cerc != null && cLat && cLng)
             {
                 var dtHr = xDateTimePicker1.Value.ToUniversalTime();
-                var record = new GPSEntry()
+                gpsEntry = new GPSEntry()
                 {
                     v = veic.Prefixo,
                     dtg = dtHr,
                     dtl = dtHr,
                     dtp = dtHr,
                     l = new LocationEntry() { t = "Point", c = new[] { lat, lng } },
+                    /*
                     pcs = new[]
                     {
                         new PassagemCercaEntry()
@@ -126,8 +133,16 @@ namespace MongoDML
                             te = xRadioButton1.Checked ? "E" : "S"
                         }
                     }.ToList()
+                    */
                 };
-                xTextBox1.Text = JsonConvert.SerializeObject(record);
+                asmontecEntry = new AsmontecEntry()
+                {
+                    _id = gpsEntry._id,
+                    tm = dtHr,
+                    stm = dtHr,
+                    gps = new[] { lat, lng }
+                };
+                xTextBox1.Text = JsonConvert.SerializeObject(gpsEntry);
             }
             else
             {
