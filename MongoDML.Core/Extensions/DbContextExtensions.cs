@@ -22,5 +22,10 @@ namespace MongoDML.Core.Extensions
         {
             return reader.GetValue(i) == DBNull.Value ? null : reader.GetString(i);
         }
+
+        public static decimal? GetDecimalNullable(this IDataReader reader, int i)
+        {
+            return reader.GetValue(i) == DBNull.Value ? (decimal?)null : reader.GetDecimal(i);
+        }
     }
 }
