@@ -73,11 +73,11 @@ namespace MongoDML
         private void xComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             var cerc = (Cerca)xComboBox2.SelectedItem;
-            if (cerc.Tipo == "GARAGEM")
-            {
+            //if (cerc.Tipo == "GARAGEM")
+            //{
                 xTextBox2.Text = cerc.LatitudeGaragem?.ToString();
                 xTextBox3.Text = cerc.LongitudeGaragem?.ToString();
-            }
+            //}
             RefreshPreview();
         }
 
